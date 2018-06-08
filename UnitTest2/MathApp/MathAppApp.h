@@ -20,4 +20,6 @@ protected:
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
 	SpriteObject		m_tank, m_turret;
+	Vector3				m_velocity;
+	Vector3				m_acceleration;
 };
