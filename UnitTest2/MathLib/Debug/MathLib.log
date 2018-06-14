@@ -1,0 +1,22 @@
+﻿  Vector4.cpp
+c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathlib\vector4.cpp(76): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathlib\vector4.cpp(81): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Vector3.cpp
+c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathlib\vector3.cpp(74): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathlib\vector3.cpp(79): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Vector2.cpp
+c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathlib\vector2.cpp(76): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathlib\vector2.cpp(81): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Matrix4.cpp
+  Matrix3.cpp
+  Matrix2.cpp
+  Generating Code...
+  MathLib.vcxproj -> C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\dependencies\Debug\MathLib.lib
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\GenLib.h
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\Matrix2.h
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\Matrix3.h
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\Matrix4.h
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\Vector2.h
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\Vector3.h
+  C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\MathLib\\Vector4.h
+          7 file(s) copied.

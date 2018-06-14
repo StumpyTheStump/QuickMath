@@ -26,6 +26,11 @@ bool MathAppApp::startup() {
 
 	m_tank.setPosition(getWindowWidth() / 2.f, getWindowHeight() / 2.f);
 
+	m_position = Vector3(0, 0, 0);
+	m_speed = 50.0f;
+	m_velocity = Vector3(0, 0, 0);
+	m_acceleration = Vector3(0, 0, 0);
+
 	return true;
 }
 
@@ -46,23 +51,37 @@ void MathAppApp::update(float deltaTime) {
 		m_tank.rotate(deltaTime);
 	if (input->isKeyDown(aie::INPUT_KEY_D))
 		m_tank.rotate(-deltaTime);
+	auto facing = m_tank.getLocalTransform()[1];
+	auto position = Vector3(0, 0, 0);
 
 	if (input->isKeyDown(aie::INPUT_KEY_W))
 	{
-
-		auto facing = m_tank.getLocalTransform()[1];
-		facing = facing * deltaTime * 100;
-
-		m_tank.translate(facing.m_x, facing.m_y);
+		m_acceleration = m_acceleration + facing * 10.0f;
 	}
+
+		m_acceleration = m_acceleration + m_velocity * -5.15f;
+		m_velocity = m_velocity + m_acceleration * deltaTime;
+		m_position = m_position + m_velocity * deltaTime;
+		//facing = facing * deltaTime * 100;
+
+		m_tank.translate(m_position.m_x, m_position.m_y);
+		m_acceleration = Vector3(0, 0, 0);
+	//facing = facing * deltaTime * 100;
+
+	//m_tank.translate(facing.m_x, facing.m_y);
 
 	if (input->isKeyDown(aie::INPUT_KEY_S))
 	{
-		auto facing = m_tank.getLocalTransform()[1];
-		facing = facing * deltaTime * -100;
-
-		m_tank.translate(facing.m_x, facing.m_y);
+		m_acceleration = m_acceleration + facing * -10.0f;
 	}
+
+	m_acceleration = m_acceleration + m_velocity * -5.15f;
+	m_velocity = m_velocity + m_acceleration * deltaTime;
+	m_position = m_position + m_velocity * deltaTime;
+	//facing = facing * deltaTime * 100;
+
+	m_tank.translate(m_position.m_x, m_position.m_y);
+	m_acceleration = Vector3(0, 0, 0);
 
 	if (input->isKeyDown(aie::INPUT_KEY_LEFT))
 		m_turret.rotate(deltaTime);
