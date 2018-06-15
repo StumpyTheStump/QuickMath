@@ -1,5 +1,5 @@
 #pragma once
-#include <glm\vec2.hpp>
+#include "Matrix3.h"
 #include "SeekBehavior.h"
 namespace aie
 {
@@ -16,10 +16,10 @@ public:
 	void update(float deltaTime);
 	void draw(aie::Renderer2D* renderer);
 
-	void addForce(glm::vec2 force);
-	glm::vec2 position;
-	glm::vec2 velocity;
-	glm::vec2 acceleration;
+	void addForce(Vector3 force);
+	Vector3 position;
+	Vector3 velocity;
+	Vector3 acceleration;
 
 private:
 	aie::Texture* texture;

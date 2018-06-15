@@ -23,6 +23,6 @@ void GameObject::draw(aie::Renderer2D * renderer)
 {
 }
 
-void GameObject::addForce(glm::vec2 force)
+void GameObject::addForce(Vector3 force)
 {
 }
