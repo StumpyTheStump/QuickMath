@@ -162,7 +162,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Agent.cpp" />
     <ClCompile Include="MathAppApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneObject.cpp" />
@@ -170,7 +170,8 @@
     <ClCompile Include="SpriteObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Agent.h" />
+    <ClInclude Include="IBehavior.h" />
     <ClInclude Include="MathAppApp.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SeekBehavior.h" />

@@ -2,6 +2,7 @@
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
+#include "SeekBehavior.h"
 
 
 MathAppApp::MathAppApp() {
@@ -19,16 +20,17 @@ bool MathAppApp::startup() {
 	// TODO: remember to change this when redistributing a build!
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+
 	m_tank.load("../bin/textures/tankGreen.png");
 	m_turret.load("../bin/textures/barrelGreen.png");
-
 	m_tank.addChild(&m_turret);
-
 	m_tank.setPosition(getWindowWidth() / 2.f, getWindowHeight() / 2.f);
-
 	m_speed = 50.0f;
 	m_velocity = Vector3(0, 0, 0);
 	m_acceleration = Vector3(0, 0, 0);
+
+	m_AI = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(100, 200, 0));
+	//m_AI->AddBehavior(new SeekBehavior(m_tank));
 
 	return true;
 }
@@ -45,6 +47,7 @@ void MathAppApp::update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
 
 	m_tank.update(deltaTime);
+	m_AI->update(deltaTime);
 
 	if (input->isKeyDown(aie::INPUT_KEY_A))
 		m_tank.rotate(deltaTime);
@@ -99,6 +102,7 @@ void MathAppApp::draw() {
 
 	// draw your stuff here!
 	m_tank.draw(m_2dRenderer);
+	m_AI->draw(m_2dRenderer);
 	
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);

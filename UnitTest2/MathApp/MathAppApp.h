@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "Renderer2D.h"
 #include "SpriteObject.h"
-
+class Agent;
 class MathAppApp : public aie::Application {
 public:
 
@@ -21,6 +21,7 @@ protected:
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
 	SpriteObject		m_tank, m_turret;
+	Agent*				m_AI;
 	Vector3				m_velocity;
 	Vector3				m_acceleration;
 	float				m_speed;

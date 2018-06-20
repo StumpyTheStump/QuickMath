@@ -1,14 +1,15 @@
 #pragma once
-class GameObject;
-class SeekBehavior
+#include "IBehavior.h"
+class SeekBehavior : public IBehavior
 {
 public:
 	SeekBehavior();
-	SeekBehavior(GameObject* target);
+	SeekBehavior(Agent* target);
+	void update(Agent* agent, float deltaTime);
 	~SeekBehavior();
 
-	void update(GameObject* agent, float deltaTime);
-	GameObject * target;
+	
 private:
+	Agent*		m_target;
 };
 
