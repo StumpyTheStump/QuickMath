@@ -163,19 +163,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="EvadeBehavior.cpp" />
+    <ClCompile Include="FleeBehavior.cpp" />
+    <ClCompile Include="KeyBoardController.cpp" />
     <ClCompile Include="MathAppApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PursueBehavior.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="SeekBehavior.cpp" />
     <ClCompile Include="SpriteObject.cpp" />
+    <ClCompile Include="WanderBehavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="EvadeBehavior.h" />
+    <ClInclude Include="FleeBehavior.h" />
     <ClInclude Include="IBehavior.h" />
+    <ClInclude Include="KeyBoardController.h" />
     <ClInclude Include="MathAppApp.h" />
+    <ClInclude Include="PursueBehavior.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SeekBehavior.h" />
     <ClInclude Include="SpriteObject.h" />
+    <ClInclude Include="WanderBehavior.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
