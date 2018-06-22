@@ -12,7 +12,7 @@ FleeBehavior::FleeBehavior(Agent * target)
 	m_target = target;
 }
 
-void FleeBehavior::update(Agent * agent, float deltaTime)
+void FleeBehavior::update(Agent * agent, StateMachine * sm, float deltaTime)
 {
 	Vector3 desiredVal = m_target->position - agent->position;
 	desiredVal.normalise();
@@ -21,6 +21,13 @@ void FleeBehavior::update(Agent * agent, float deltaTime)
 	agent->AddForce(force);
 }
 
+void FleeBehavior::initialise(Agent * agent)
+{
+}
+
+void FleeBehavior::exit(Agent * agent)
+{
+}
 
 FleeBehavior::~FleeBehavior()
 {

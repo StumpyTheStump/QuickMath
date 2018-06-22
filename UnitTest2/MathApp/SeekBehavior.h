@@ -1,11 +1,13 @@
 #pragma once
-#include "IBehavior.h"
-class SeekBehavior : public IBehavior
+#include "States.h"
+class SeekBehavior : public State
 {
 public:
 	SeekBehavior();
 	SeekBehavior(Agent* target);
-	void update(Agent* agent, float deltaTime);
+	virtual void update(Agent* agent, StateMachine* sm, float deltaTime);
+	virtual void initialise(Agent* agent);
+	virtual void exit(Agent* agent);
 	~SeekBehavior();
 
 	

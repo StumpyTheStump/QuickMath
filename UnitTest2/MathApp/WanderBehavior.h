@@ -1,14 +1,20 @@
 #pragma once
-#include "IBehavior.h"
-class WanderBehavior : IBehavior
+#include "States.h"
+class WanderBehavior : public State
 {
 public:
 	WanderBehavior();
-	WanderBehavior(Agent* target);
-	void update(Agent* agent, float deltaTime);
+	WanderBehavior(Agent* target, float wanderDistance, float wanderRadius, float jitterAmount);
+	virtual void update(Agent* agent, StateMachine* sm, float deltaTime);
+	virtual void initialise(Agent* agent);
+	virtual void exit(Agent* agent);
 	~WanderBehavior();
 
 private:
+	float		m_wanderDist;
+	float		m_wanderRad;
+	float		m_jitterAmount;
+	Vector3		randomVec;
 	Agent*		m_target;
 };
 

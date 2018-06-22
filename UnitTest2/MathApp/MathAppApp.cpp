@@ -7,6 +7,8 @@
 #include "FleeBehavior.h"
 #include "EvadeBehavior.h"
 #include "PursueBehavior.h"
+#include "WanderBehavior.h"
+#include "StateMachine.h"
 
 
 MathAppApp::MathAppApp() {
@@ -32,14 +34,16 @@ bool MathAppApp::startup() {
 	//m_speed = 50.0f;
 	//m_velocity = Vector3(0, 0, 0);
 	//m_acceleration = Vector3(0, 0, 0);
+	m_fsm = new StateMachine();
+	Agent* m_player = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(100, 200, 0));
+	Agent* m_AI = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(500, 200, 0));
+	
+	m_agents.push_back(m_player);
+	m_agents.push_back(m_AI);
 
-	m_player = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(100, 200, 0));
 	m_player->AddBehavior(new KeyBoardController(aie::Input::getInstance()));
-
-	m_AI = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(500, 200, 0));
-	m_AI->AddBehavior(new EvadeBehavior(m_player));
-	
-	
+	m_fsm->ChangeState(m_AI, new WanderBehavior(m_player, 0.0f, 100.0f, 2.0f));
+	m_AI->AddBehavior(m_fsm);
 
 	return true;
 }
@@ -55,9 +59,10 @@ void MathAppApp::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
+	for (auto agent : m_agents)
+		agent->update(deltaTime);
 	//m_tank.update(deltaTime);
-	m_player->update(deltaTime);
-	m_AI->update(deltaTime);
+	
 
 	//if (input->isKeyDown(aie::INPUT_KEY_A))
 	//	m_tank.rotate(deltaTime);
@@ -112,8 +117,8 @@ void MathAppApp::draw() {
 
 	// draw your stuff here!
 	//m_tank.draw(m_2dRenderer);
-	m_player->draw(m_2dRenderer);
-	m_AI->draw(m_2dRenderer);
+	for (auto agent : m_agents)
+		agent->draw(m_2dRenderer);
 	
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
