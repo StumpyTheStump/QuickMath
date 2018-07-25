@@ -11,7 +11,4 @@ Node::~Node()
 {
 }
 
-void Node::dijkstrasSearch()
-{
-	
-}
+
