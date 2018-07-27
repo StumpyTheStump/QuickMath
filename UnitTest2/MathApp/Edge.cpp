@@ -1,29 +1,31 @@
 #include "Edge.h"
+#include "Node.h"
 
 
 
-Edge::Edge()
+Edge::Edge() : nodeB(nullptr), cost(0)
 {
 }
 
-void Edge::SetNode(Node * node)
+Node * Edge::GetNodeB()
 {
+	return nodeB;
 }
 
-Node * Edge::GetNode()
+void Edge::SetNodeB(Node * node)
 {
-	return nullptr;
-}
-
-void Edge::SetCost(float cost)
-{
+	nodeB = node;
 }
 
 float Edge::GetCost()
 {
-	return 0.0f;
+	return cost;
 }
 
+void Edge::SetCost(float cost)
+{
+	this->cost = cost;
+}
 
 Edge::~Edge()
 {

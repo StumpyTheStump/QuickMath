@@ -14,19 +14,18 @@ public:
 	void AddNode(Node* node);
 	// Connects the two nodes in the graph
 	void ConnectNode(Node* a, Node* b, float cost);
+	//Draw the nodes on the screen
+	void draw(aie::Renderer2D* renderer);
 	// Get the nodes
 	std::vector<Node*> GetNodes();
 	// Depth first search
-	std::vector<Node*> depthFirstSearch(Node* startNode, Node* endNode);
-	// Breadth first search
-	std::vector<Node*> breadthFirstSearch(Node* startNode, Node* endNode);
+	std::vector<Node*> DFS(Node* startNode, Node* endNode);
 	// A* shortest path search
 	std::vector<Node*> AStarSearch(Node* startNode, Node* endNode);
-	//Draw the nodes on the screen
-	void draw(aie::Renderer2D* renderer);
+	
 
 	~Graph();
 private:
-	std::vector<Node*> m_nodes;
+	std::vector<Node*> nodes;
 };
 

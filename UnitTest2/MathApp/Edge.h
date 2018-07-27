@@ -6,16 +6,15 @@ class Edge
 public:
 	Edge();
 	// Setting the target node
-	void SetNode(Node* node);
-	Node* GetNode();
-
+	Node* GetNodeB();
+	void SetNodeB(Node* node);
 	// Cost of the edge
-	void SetCost(float cost);
 	float GetCost();
+	void SetCost(float cost);
 
 	~Edge();
 private:
-	Node * target;
+	Node* nodeB;
 	float cost;
 };
 

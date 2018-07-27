@@ -5,6 +5,7 @@
 #include <vector>
 class Agent;
 class StateMachine;
+class Graph;
 class MathAppApp : public aie::Application {
 public:
 
@@ -18,6 +19,8 @@ public:
 	virtual void draw();
 	void addForce(Vector3 force);
 
+	void SetGraph();
+
 protected:
 
 	aie::Renderer2D*		m_2dRenderer;
@@ -28,4 +31,5 @@ protected:
 	Vector3					m_velocity;
 	Vector3					m_acceleration;
 	float					m_speed;
+	Graph*					m_graph;
 };

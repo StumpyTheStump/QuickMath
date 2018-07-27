@@ -7,35 +7,39 @@ class Node
 {
 public:
 	Node();
-	// Value for the node
-	void SetPosition(Vector2 position);
-	Vector2 GetPosition();
-
-	// A flag to check if the node has visited already
-	void SetVisited(bool visited);
-	bool GetVisited();
-
-	// Add connections to the node
-	void AddConnections(Node* node, Node* target, float cost);
+	// Connects nodes
+	void SetConnection(Node* a, Node* b, float cost);
 	std::vector<Edge*> GetConnections();
-
-	// Set the parent
-	void SetParent(Node* node);
+	// Position of the node
+	Vector2 GetPosition();
+	void SetPosition(Vector2 pos);
+	// Check if the node has been visited
+	void Visited(bool isVisited);
+	bool CheckVisited();
+	// Set the parent node
+	void SetParent(Node* parent);
 	Node* GetParent();
-
-	// Set the g-score
-	void SetGScore(float gScore);
+	// GScore for the node
+	void SetGScore(float score);
 	float GetGScore();
+	// FScore for the node
+	void SetFScore(float score);
+	float SetFScore();
 
 	static bool CompareGScore(Node* a, Node* b);
+	static bool CompareFScore(Node* a, Node* b);
+
+	bool highlighted;
 
 	~Node();
 
 private:
-	Vector2					m_position;
-	bool					m_isVisited;
-	Node*					m_parent;
-	float					m_gScore;
-	std::vector<Edge*>		m_connections;
+	
+	bool					visited;
+	float					gScore;
+	float					fScore;
+	Vector2					position;
+	Node*					parent;
+	std::vector<Edge*>		connections;
 };
 

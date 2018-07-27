@@ -3,6 +3,7 @@
 #include "Font.h"
 #include "Input.h"
 #include "KeyBoardController.h"
+#include "Graph.h"
 #include "SeekBehavior.h"
 #include "FleeBehavior.h"
 #include "EvadeBehavior.h"
@@ -26,6 +27,21 @@ bool MathAppApp::startup() {
 	// TODO: remember to change this when redistributing a build!
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+
+	m_graph = new Graph();
+	SetGraph();
+
+	// pathfinding using A*
+	Node* startNode = m_graph->GetNodes()[63];
+	Node* endNode = m_graph->GetNodes()[35];
+
+	std::vector<Node*> path = m_graph->AStarSearch(startNode, endNode);
+	for (auto node : path)
+	{
+		node->highlighted = true;
+	}
+
+
 
 	//m_tank.load("../bin/textures/tankGreen.png");
 	//m_turret.load("../bin/textures/barrelGreen.png");
@@ -52,6 +68,9 @@ void MathAppApp::shutdown() {
 
 	delete m_font;
 	delete m_2dRenderer;
+	delete m_graph;
+	for (auto agent : m_agents)
+		 delete agent;
 }
 
 void MathAppApp::update(float deltaTime) {
@@ -119,6 +138,8 @@ void MathAppApp::draw() {
 	//m_tank.draw(m_2dRenderer);
 	for (auto agent : m_agents)
 		agent->draw(m_2dRenderer);
+
+	m_graph->draw(m_2dRenderer);
 	
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
@@ -130,4 +151,36 @@ void MathAppApp::draw() {
 void MathAppApp::addForce(Vector3 force)
 {
 	m_acceleration = m_acceleration + force;
+}
+
+void MathAppApp::SetGraph()
+{
+	for (int i = 0; i < 20; ++i)
+	{
+		for (int j = 0; j < 20; ++j)
+		{
+			// Create a new node
+			Node* node = new Node();
+			node->SetPosition(Vector2(160 + i * 32, 60 + j * 32));
+			// Add the node to the graph
+			m_graph->AddNode(node);
+		}
+	}
+
+	for (auto a : m_graph->GetNodes())
+	{
+		for (auto b : m_graph->GetNodes())
+		{
+			if (a == b)
+				continue;
+			// Distance between 2 nodes
+			Vector2 dist = b->GetPosition() - a->GetPosition();
+			// Find a length
+			float length = dist.magnitude();
+			// Checking if the lenght is within the range
+			if (length <= 50.0f)
+				// Connect the nodes
+				m_graph->ConnectNode(a, b, length);
+		}
+	}
 }
