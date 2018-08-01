@@ -68,7 +68,7 @@ void Node::SetFScore(float score)
 	fScore = score;
 }
 
-float Node::SetFScore()
+float Node::GetFScore()
 {
 	return fScore;
 }
@@ -80,7 +80,7 @@ bool Node::CompareGScore(Node * a, Node * b)
 
 bool Node::CompareFScore(Node * a, Node * b)
 {
-	return a < b;
+	return a->GetFScore() > b->GetFScore();
 }
 
 

@@ -105,29 +105,29 @@ std::vector<Node*> Graph::AStarSearch(Node * startNode, Node * endNode)
 		priorityQueue.remove(currentNode);
 		// Visited is equal to true
 		currentNode->Visited(true);
+		if (currentNode == endNode)
+			break;
 		// Loop through the current node edges
 		for (auto e : currentNode->GetConnections())
 		{
-
-
 			// If end node is not traversed
 			if (!e->GetNodeB()->CheckVisited())
 			{
 				// Heuristic score of current node to end node
 				Vector2 dist = e->GetNodeB()->GetPosition() - endNode->GetPosition();
-				float hScore = sqrtf(dist.m_x * dist.m_x + dist.m_y * dist.m_y);
+				float hScore = dist.magnitude();
 				// Calculate current node’s g-score, the edge cost & heuristic of end node
 				float cost = currentNode->GetGScore() + e->GetCost() + hScore;
 				// If cost is less than the node connected to the edge
-				if (cost < e->GetNodeB()->SetFScore())
+				if (cost < e->GetNodeB()->GetFScore())
 				{
 					// Set the parent connected to the edge to current node
 					e->GetNodeB()->SetParent(currentNode);
 					// Set the f-score connected to the edge to current node g-score, edge cost & heuristic score
 					e->GetNodeB()->SetFScore(cost);
+					// Push the target node to the queue
+					priorityQueue.push_back(e->GetNodeB());
 				}
-				// Push the target node to the queue
-				priorityQueue.push_back(e->GetNodeB());
 			}	
 		}
 	}

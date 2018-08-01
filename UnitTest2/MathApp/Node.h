@@ -24,7 +24,7 @@ public:
 	float GetGScore();
 	// FScore for the node
 	void SetFScore(float score);
-	float SetFScore();
+	float GetFScore();
 
 	static bool CompareGScore(Node* a, Node* b);
 	static bool CompareFScore(Node* a, Node* b);

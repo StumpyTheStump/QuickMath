@@ -1,4 +1,2 @@
-﻿  Graph.cpp
-c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathapp\graph.cpp(29): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\s171841\desktop\github\quickmath\trunk\unittest2\mathapp\graph.cpp(33): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  Node.cpp
   MathApp.vcxproj -> C:\Users\s171841\Desktop\GitHub\QuickMath\trunk\UnitTest2\temp\MathApp\Win32\Debug\MathApp.exe
