@@ -40,7 +40,7 @@ void WanderBehavior::update(Agent * agent, StateMachine * sm, float deltaTime)
 
 	Vector3 dist = m_target->position - agent->position;
 	float mag = dist.magnitude();
-	if (mag < 100.0f)
+	if (mag < 300.0f)
 		sm->ChangeState(agent, new SeekBehavior(m_target));
 }
 

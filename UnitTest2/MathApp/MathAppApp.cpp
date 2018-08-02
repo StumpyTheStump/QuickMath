@@ -32,8 +32,9 @@ bool MathAppApp::startup() {
 	SetGraph();
 
 	// pathfinding using A*
-	Node* startNode = m_graph->GetNodes()[63];
-	Node* endNode = m_graph->GetNodes()[35];
+	// Between 0 - 1859
+	Node* startNode = m_graph->GetNodes()[0];
+	Node* endNode = m_graph->GetNodes()[1859];
 
 	std::vector<Node*> path = m_graph->AStarSearch(startNode, endNode);
 	for (auto node : path)
@@ -52,13 +53,16 @@ bool MathAppApp::startup() {
 	//m_acceleration = Vector3(0, 0, 0);
 	m_fsm = new StateMachine();
 	Agent* m_player = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(100, 200, 0));
-	Agent* m_AI = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(500, 200, 0));
-	
+	Agent* m_AI = new Agent(new aie::Texture("../bin/textures/rock_medium.png"), Vector3(500, 200, 0));
+	Agent* m_AI2 = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(600, 200, 0));
+
+
 	m_agents.push_back(m_player);
 	m_agents.push_back(m_AI);
+	m_agents.push_back(m_AI2);
 
 	m_player->AddBehavior(new KeyBoardController(aie::Input::getInstance()));
-	m_fsm->ChangeState(m_AI, new WanderBehavior(m_player, 0.0f, 100.0f, 2.0f));
+	m_fsm->ChangeState(m_AI, new WanderBehavior(m_player, 0.0f, 100.0f, 20.0f));
 	m_AI->AddBehavior(m_fsm);
 
 	return true;
@@ -155,13 +159,13 @@ void MathAppApp::addForce(Vector3 force)
 
 void MathAppApp::SetGraph()
 {
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 60; ++i)
 	{
-		for (int j = 0; j < 20; ++j)
+		for (int j = 0; j < 31; ++j)
 		{
 			// Create a new node
 			Node* node = new Node();
-			node->SetPosition(Vector2(160 + i * 32, 60 + j * 32));
+			node->SetPosition(Vector2(17.5 + i * 32, 35 + j * 32));
 			// Add the node to the graph
 			m_graph->AddNode(node);
 		}
