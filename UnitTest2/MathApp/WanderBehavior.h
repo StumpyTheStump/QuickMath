@@ -14,7 +14,7 @@ private:
 	float		m_wanderDist;
 	float		m_wanderRad;
 	float		m_jitterAmount;
-	Vector3		randomVec;
+	Vector2		randomVec;
 	Agent*		m_target;
 };
 

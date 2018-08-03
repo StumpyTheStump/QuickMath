@@ -167,6 +167,7 @@
     <ClCompile Include="EvadeBehavior.cpp" />
     <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="IdleBehavior.cpp" />
     <ClCompile Include="KeyBoardController.cpp" />
     <ClCompile Include="MathAppApp.cpp" />
     <ClCompile Include="main.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="FleeBehavior.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="IBehavior.h" />
+    <ClInclude Include="IdleBehavior.h" />
     <ClInclude Include="KeyBoardController.h" />
     <ClInclude Include="MathAppApp.h" />
     <ClInclude Include="Node.h" />

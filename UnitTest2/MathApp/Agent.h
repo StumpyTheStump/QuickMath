@@ -1,5 +1,5 @@
 #pragma once
-#include "Vector3.h"
+#include "Vector2.h"
 #include <vector>
 namespace aie
 {
@@ -12,15 +12,15 @@ class Agent
 {
 public:
 	Agent();
-	Agent(aie::Texture* texture, Vector3 position);
+	Agent(aie::Texture* texture, Vector2 position);
 	void update(float deltaTime);
 	void draw(aie::Renderer2D* renderer);
-	void AddForce(Vector3 force);
+	void AddForce(Vector2 force);
 	void AddBehavior(IBehavior* behavior);
 	~Agent();
-	Vector3 position;
-	Vector3 acceleration;
-	Vector3 velocity;
+	Vector2 position;
+	Vector2 acceleration;
+	Vector2 velocity;
 protected:
 	aie::Texture* texture;
 	std::vector<IBehavior*> m_behaviors;

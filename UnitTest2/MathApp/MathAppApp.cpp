@@ -9,6 +9,7 @@
 #include "EvadeBehavior.h"
 #include "PursueBehavior.h"
 #include "WanderBehavior.h"
+#include "PathfindingBehavior.h"
 #include "StateMachine.h"
 
 
@@ -52,9 +53,10 @@ bool MathAppApp::startup() {
 	//m_velocity = Vector3(0, 0, 0);
 	//m_acceleration = Vector3(0, 0, 0);
 	m_fsm = new StateMachine();
-	Agent* m_player = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(100, 200, 0));
-	Agent* m_AI = new Agent(new aie::Texture("../bin/textures/rock_medium.png"), Vector3(500, 200, 0));
-	Agent* m_AI2 = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector3(600, 200, 0));
+	m_fsm2 = new StateMachine();
+	Agent* m_player = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector2(100, 200));
+	Agent* m_AI = new Agent(new aie::Texture("../bin/textures/rock_medium.png"), Vector2(500, 200));
+	Agent* m_AI2 = new Agent(new aie::Texture("../bin/textures/ship.png"), Vector2(600, 200));
 
 
 	m_agents.push_back(m_player);
@@ -63,7 +65,9 @@ bool MathAppApp::startup() {
 
 	m_player->AddBehavior(new KeyBoardController(aie::Input::getInstance()));
 	m_fsm->ChangeState(m_AI, new WanderBehavior(m_player, 0.0f, 100.0f, 20.0f));
+	m_fsm2->ChangeState(m_AI2, new PathfindingBehavior(path));
 	m_AI->AddBehavior(m_fsm);
+	m_AI2->AddBehavior(m_fsm2);
 
 	return true;
 }

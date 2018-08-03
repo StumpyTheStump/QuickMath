@@ -19,13 +19,13 @@ SeekBehavior::SeekBehavior(Agent * target)
 
 void SeekBehavior::update(Agent * agent, StateMachine * sm, float deltaTime)
 {
-	Vector3 desiredVel = m_target->position - agent->position;
+	Vector2 desiredVel = m_target->position - agent->position;
 	desiredVel.normalise();
 	desiredVel = desiredVel * 100.0f;
-	Vector3 force = desiredVel - agent->velocity;
+	Vector2 force = desiredVel - agent->velocity;
 	agent->AddForce(force);
 
-	Vector3 dist = m_target->position - agent->position;
+	Vector2 dist = m_target->position - agent->position;
 	float mag = dist.magnitude();
 	if (mag > 300.0f)
 		sm->ChangeState(agent, new WanderBehavior(m_target, 0.0f, 100.0f, 20.0f));

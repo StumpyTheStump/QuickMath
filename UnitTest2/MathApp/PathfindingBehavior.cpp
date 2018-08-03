@@ -4,38 +4,47 @@
 #include <time.h>
 #include "Graph.h"
 #include "StateMachine.h"
+#include "IdleBehavior.h"
 
 
 
 PathfindingBehavior::PathfindingBehavior()
 {
-	m_targetLocation = nullptr;
 }
 
-PathfindingBehavior::PathfindingBehavior(std::list<Node*> targetLocation)
+PathfindingBehavior::PathfindingBehavior(std::vector<Node*> path)
 {
+	m_targetLocation = path;
+	m_targetNode = m_targetLocation.back();
 }
 
-
-void PathfindingBehavior::update(Agent * agent, float deltaTime)
+void PathfindingBehavior::update(Agent * agent, StateMachine * sm, float deltaTime)
 {
-	Vector3 desiredVel = m_targetLocation->position - agent->position;
+	Vector2 desiredVel = m_targetNode->GetPosition() - agent->position;
 	desiredVel.normalise();
 	desiredVel = desiredVel * 100.0f;
-	Vector3 force = desiredVel - agent->velocity;
+	Vector2 force = desiredVel - agent->velocity;
 	agent->AddForce(force);
-}
 
-void PathfindingBehavior::initialise(Agent * agent)
-{
-}
+	
+	Vector2 dist = m_targetNode->GetPosition() - agent->position;
+	float mag = dist.magnitude();
+	// if agent reaches the nodes position 
+	if (mag < 20.0f)
+	{
+		m_targetLocation.pop_back();
+		if (m_targetLocation.empty())
+		{
+			sm->ChangeState(agent, new IdleBehavior());
+			return;
+		}
+		m_targetNode = m_targetLocation.back();
 
-void PathfindingBehavior::exit(Agent * agent)
-{
-}
+	}
+		// remove teh last node from the path
 
+}
 
 PathfindingBehavior::~PathfindingBehavior()
 {
-	delete m_targetLocation;
 }

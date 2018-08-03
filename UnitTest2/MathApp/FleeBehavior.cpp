@@ -14,10 +14,10 @@ FleeBehavior::FleeBehavior(Agent * target)
 
 void FleeBehavior::update(Agent * agent, StateMachine * sm, float deltaTime)
 {
-	Vector3 desiredVal = m_target->position - agent->position;
+	Vector2 desiredVal = m_target->position - agent->position;
 	desiredVal.normalise();
 	desiredVal = desiredVal * -100.0f;
-	Vector3 force = desiredVal - agent->velocity;
+	Vector2 force = desiredVal - agent->velocity;
 	agent->AddForce(force);
 }
 
