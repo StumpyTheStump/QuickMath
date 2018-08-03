@@ -22,6 +22,7 @@ Agent::Agent(aie::Texture * texture, Vector2 position)
 
 void Agent::update(float deltaTime)
 {
+	// Set screen boundries to teleport to the other side creating an infinte player scrolling
 	if (position.m_x < 0)
 		position.m_x = 1930.0f;
 	if (position.m_x > 1930.0f)
